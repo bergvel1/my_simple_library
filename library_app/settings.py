@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
     'django_tables2',
+    'django_filters',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [

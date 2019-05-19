@@ -34,7 +34,7 @@ class AuthorListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
         self.assertTrue(response.context['is_paginated'] == True)
-        self.assertTrue(len(response.context['authors'].page.object_list.data._result_cache) == 10)
+        self.assertTrue(len(response.context['authors'].page.object_list.data) == 10)
 
     def test_lists_all_authors(self):
         # Get second page and confirm it has (exactly) remaining 3 items
@@ -42,7 +42,7 @@ class AuthorListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
         self.assertTrue(response.context['is_paginated'] == True)
-        self.assertTrue(len(response.context['authors'].page.object_list.data._result_cache) == 3)
+        self.assertTrue(len(response.context['authors'].page.object_list.data) == 3)
 
 
 import datetime
@@ -120,7 +120,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
 
         # Check that initially we don't have any books in list (none on loan)
         self.assertTrue('mybooks' in response.context)
-        self.assertEqual(len(response.context['mybooks'].page.object_list.data._result_cache), 0)
+        self.assertEqual(len(response.context['mybooks'].page.object_list.data), 0)
 
         # Now change all books to be on loan
         books = BookInstance.objects.all()[:10]
@@ -139,7 +139,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         self.assertTrue('mybooks' in response.context)
 
         # Confirm all books belong to testuser1 and are on loan
-        for bookitem in response.context['mybooks'].page.object_list.data._result_cache:
+        for bookitem in response.context['mybooks'].page.object_list.data:
             self.assertEqual(response.context['user'], bookitem.borrower)
             self.assertEqual('o', bookitem.status)
 
@@ -158,7 +158,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Confirm that of the items, only 10 are displayed due to pagination.
-        self.assertEqual(len(response.context['mybooks'].page.object_list.data._result_cache), 10)
+        self.assertEqual(len(response.context['mybooks'].page.object_list.data), 10)
 
         last_date = 0
         for book in response.context['mybooks'].page.object_list.data._result_cache:

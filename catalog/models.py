@@ -3,7 +3,6 @@ from django.urls import reverse  # Used to generate URLs by reversing the URL pa
 from django.contrib.auth.models import User
 from datetime import date
 import uuid  # Required for unique book instances
-import django_tables2 as tables
 
 
 # Create your models here.
@@ -107,7 +106,7 @@ class Author(models.Model):
 
     @property
     def name(self):
-        return '{} {}'.format(self.first_name, self.family_name)
+        return '{} {}'.format(self.first_name, self.last_name)
 
     class Meta:
         ordering = ['last_name', 'first_name']
@@ -119,3 +118,5 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
+
+

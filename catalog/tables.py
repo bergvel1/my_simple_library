@@ -1,8 +1,6 @@
 import django_tables2 as tables
 from django_tables2 import views
 
-from catalog.models import Author
-
 
 class AuthorTable(tables.Table):
     author = tables.Column(empty_values=(), linkify=lambda record: record.get_absolute_url(), order_by=('last_name', 'first_name'))
