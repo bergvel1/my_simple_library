@@ -3,26 +3,26 @@
 {% load bootstrap3 %}
 {% block content %}
   <h1>Author List</h1>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   {% if filter %}
-        <form action="" method="get" class="form form-inline">
-            {% bootstrap_form filter.form layout='inline' %}
-            {% bootstrap_button 'filter' button_type='submit'%}
-        </form>
+    <form action="" method="get" class="form form-inline">
+      {% bootstrap_form filter.form layout='inline' %}
+      {% bootstrap_button 'filter' button_type='submit' %}
+    </form>
     {% if authors %}
-  <ul>
-    {% render_table filter.qs 'django_tables2/bootstrap.html' %}
-  </ul>
-  {% else %}
-    <p>No authors found.</p>
-  {% endif %}
+      <ul>
+        {% render_table filter.qs 'django_tables2/bootstrap.html' %}
+      </ul>
     {% else %}
-  {% if authors %}
-  <ul>
-    {% render_table authors %}
-  </ul>
+      <p>No authors found.</p>
+    {% endif %}
   {% else %}
-    <p>No authors found.</p>
-  {% endif %}
+    {% if authors %}
+      <ul>
+        {% render_table authors %}
+      </ul>
+    {% else %}
+      <p>No authors found.</p>
+    {% endif %}
   {% endif %}
 {% endblock %}
