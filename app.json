@@ -9,6 +9,9 @@
       "DJANGO_DEBUG": {},
       "PAPERTRAIL_API_TOKEN": {}
     },
+    "scripts": {
+      "postdeploy": "python manage.py migrate"
+    },
     "test": {
       "addons": [
           "heroku-postgresql:hobby-dev"
