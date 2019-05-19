@@ -2,10 +2,19 @@
   "addons": [
     "heroku-postgresql"
   ],
+  "env": {
+    "DATABASE_URL": {},
+    "DJANGO_DEBUG": {},
+    "PAPERTRAIL_API_TOKEN": {},
+    "SECRET_KEY": {}
+  },
   "environments": {
     "test": {
       "scripts": {
         "test": "python3 manage.py test"
+      },
+      "env": {
+        "DJANGO_DEBUG": "True"
       }
     }
   }
