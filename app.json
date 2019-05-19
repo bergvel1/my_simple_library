@@ -10,7 +10,7 @@
       "PAPERTRAIL_API_TOKEN": {}
     },
     "scripts": {
-      "postdeploy": "python manage.py migrate"
+      "postdeploy": "python manage.py makemigrations; python manage.py migrate"
     },
     "test": {
       "addons": [
@@ -18,7 +18,7 @@
       ],
       "scripts": {
         "test-setup": "python manage.py collectstatic --noinput; python manage.py makemigrations; python manage.py migrate",
-        "test": "python manage.py test"
+        "test": "python manage.py test --verbosity 2"
       }
     }
   }
