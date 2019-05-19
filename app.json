@@ -8,7 +8,7 @@
       "DATABASE_URL": {},
       "DJANGO_DEBUG": {},
       "PAPERTRAIL_API_TOKEN": {}
-    },git
+    },
     "test": {
       "addons": [
           "heroku-postgresql:hobby-dev"
