@@ -1,15 +1,12 @@
 {
-  "env": {
-    "DATABASE_URL": {},
-    "DJANGO_DEBUG": {},
-    "PAPERTRAIL_API_TOKEN": {},
-    "SECRET_KEY": {}
-  },
   "environments": {
     "test": {
+      "addons": [
+          "heroku-postgresql:hobby-dev"
+      ],
       "scripts": {
-        "test-setup": "python manage.py collectstatic",
-        "test": "python3 manage.py test"
+        "test-setup": "python manage.py collectstatic --noinput",
+        "test": "python manage.py test"
       }
     }
   }
