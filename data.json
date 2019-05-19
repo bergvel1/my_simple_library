@@ -1,0 +1,1484 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "catalog",
+    "model": "genre"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "catalog",
+    "model": "author"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "catalog",
+    "model": "bookinstance"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "catalog",
+    "model": "book"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "catalog",
+    "model": "language"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "quf4p8wytqq49m8t2shh7va89qj0q3cr",
+  "fields": {
+    "session_data": "MTcyYTQ3MjM2ODMzMTEwNTU5MTE3NDM5MTQwNzhkNzQ0YjZmZTMxODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzNGMwOTc3ZDBhYTFlY2FjYmQxNWY0YzY4NjNkY2E4ZDliMmY3YTg5In0=",
+    "expire_date": "2019-06-02T04:13:54.778Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wj6gxhx1p0ho7zboauvif9v2nwworqkq",
+  "fields": {
+    "session_data": "NTQzN2FhYTk5NzYwNWRkZDdjYWM5OWJlYjEyMzEzZTlhY2ZmZjMyZTp7Im51bV92aXNpdHMiOjJ9",
+    "expire_date": "2019-05-24T04:38:28.281Z"
+  }
+},
+{
+  "model": "catalog.genre",
+  "pk": 1,
+  "fields": {
+    "name": "Bildungsroman"
+  }
+},
+{
+  "model": "catalog.genre",
+  "pk": 2,
+  "fields": {
+    "name": "Alternative history"
+  }
+},
+{
+  "model": "catalog.genre",
+  "pk": 3,
+  "fields": {
+    "name": "Parallel worlds"
+  }
+},
+{
+  "model": "catalog.genre",
+  "pk": 4,
+  "fields": {
+    "name": "Southern gothic"
+  }
+},
+{
+  "model": "catalog.genre",
+  "pk": 5,
+  "fields": {
+    "name": "Historical novel"
+  }
+},
+{
+  "model": "catalog.language",
+  "pk": 1,
+  "fields": {
+    "name": "English"
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 1,
+  "fields": {
+    "title": "Norwegian Wood",
+    "author": 1,
+    "summary": "Norwegian Wood is a 1987 novel by Japanese author Haruki Murakami. The novel is a nostalgic story of loss and burgeoning sexuality. It is told from the first-person perspective of Toru Watanabe, who looks back on his days as a college student living in Tokyo. Through Watanabe's reminiscences readers see him develop relationships with two very different women\u2014the beautiful yet emotionally troubled Naoko, and the outgoing, lively Midori.",
+    "isbn": "0-375-70402-7",
+    "language": 1,
+    "genre": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 2,
+  "fields": {
+    "title": "1Q84",
+    "author": 1,
+    "summary": "1Q84 is a dystopian novel written by Japanese writer Haruki Murakami, first published in three volumes in Japan in 2009\u201310. It covers a fictionalized year of 1984 in parallel with a \"real\" one. Its first printing sold out on the day it was released and sales reached a million within a month. The English-language edition of all three volumes, with the first two volumes translated by Jay Rubin and the third by Philip Gabriel, was released in North America and the United Kingdom on October 25, 2011. An excerpt from the novel, \"Town of Cats\", appeared in the September 5, 2011 issue of The New Yorker magazine.The first chapter of 1Q84 had also been read as an excerpt in the Selected Shorts series at Symphony Space in New York.",
+    "isbn": "9780307593313",
+    "language": 1,
+    "genre": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 3,
+  "fields": {
+    "title": "To Kill A Mockingbird",
+    "author": 2,
+    "summary": "To Kill a Mockingbird is a novel by Harper Lee published in 1960. Instantly successful, widely read in high schools and middle schools in the United States, it has become a classic of modern American literature, winning the Pulitzer Prize. The plot and characters are loosely based on Lee's observations of her family, her neighbors and an event that occurred near her hometown of Monroeville, Alabama, in 1936, when she was 10 years old.",
+    "isbn": "0-06-093546-4",
+    "language": 1,
+    "genre": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 4,
+  "fields": {
+    "title": "Ragtime",
+    "author": 3,
+    "summary": "Ragtime is a novel by E. L. Doctorow, published in 1975. This work of historical fiction is mainly set in the New York City area from 1902 until 1912, with brief scenes towards the end describing the United States' entry into World War I in 1917 and one character's involvement in the Mexican Revolution. A unique adaptation of the historical narrative genre with a 1970s slant, the novel blends fictional and historical figures into a framework that revolves around events, characters, and ideas important in American history.",
+    "isbn": "0-394-46901-1",
+    "language": 1,
+    "genre": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 1,
+  "fields": {
+    "first_name": "Haruki",
+    "last_name": "Murakami",
+    "date_of_birth": "1949-01-12",
+    "date_of_death": null
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 2,
+  "fields": {
+    "first_name": "Harper",
+    "last_name": "Lee",
+    "date_of_birth": "1926-04-28",
+    "date_of_death": "2016-02-19"
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 3,
+  "fields": {
+    "first_name": "E. L.",
+    "last_name": "Doctorow",
+    "date_of_birth": "1931-01-06",
+    "date_of_death": "2015-07-21"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add genre",
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "codename": "add_genre"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change genre",
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "codename": "change_genre"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete genre",
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "codename": "delete_genre"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view genre",
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "codename": "view_genre"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add author",
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "codename": "add_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change author",
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "codename": "change_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete author",
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "codename": "delete_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view author",
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "codename": "view_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add book instance",
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "codename": "add_bookinstance"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change book instance",
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "codename": "change_bookinstance"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete book instance",
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "codename": "delete_bookinstance"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view book instance",
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "codename": "view_bookinstance"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add book",
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "codename": "add_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change book",
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "codename": "change_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete book",
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "codename": "delete_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view book",
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "codename": "view_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add language",
+    "content_type": [
+      "catalog",
+      "language"
+    ],
+    "codename": "add_language"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change language",
+    "content_type": [
+      "catalog",
+      "language"
+    ],
+    "codename": "change_language"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete language",
+    "content_type": [
+      "catalog",
+      "language"
+    ],
+    "codename": "delete_language"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view language",
+    "content_type": [
+      "catalog",
+      "language"
+    ],
+    "codename": "view_language"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Set book as returned",
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "codename": "can_mark_returned"
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Library Members",
+    "permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "Librarians",
+    "permissions": [
+      [
+        "can_mark_returned",
+        "catalog",
+        "bookinstance"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$GBXZh7OBbuyv$lN+4HFVvd9ziiLRxMhOX6+RUXf/N+4FixVTfPneMSFs=",
+    "last_login": "2019-05-19T04:13:54.774Z",
+    "is_superuser": true,
+    "username": "dbergv",
+    "first_name": "",
+    "last_name": "",
+    "email": "bergv522@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-05-10T03:11:10.205Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$PM7q3G5KLeqI$jioPKD64sbhmatKQ0IVTbtGCb+UaR0zgqj0TxsXgR3U=",
+    "last_login": "2019-05-10T05:39:57.869Z",
+    "is_superuser": false,
+    "username": "testuser",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-05-10T04:41:06Z",
+    "groups": [
+      [
+        "Library Members"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$HPsfHX5kwbx2$u6zLfruMVK03oUvZ4ZzV7A5LG2XM4JiHEo2E8Hy8ekc=",
+    "last_login": "2019-05-18T21:58:17.375Z",
+    "is_superuser": false,
+    "username": "librarian",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-05-10T04:42:27Z",
+    "groups": [
+      [
+        "Librarians"
+      ]
+    ],
+    "user_permissions": [
+      [
+        "can_mark_returned",
+        "catalog",
+        "bookinstance"
+      ]
+    ]
+  }
+},
+{
+  "model": "catalog.bookinstance",
+  "pk": "46e1824e-79e9-44f6-b8f3-40a22c2e3379",
+  "fields": {
+    "book": 4,
+    "imprint": ".",
+    "due_back": null,
+    "status": "a",
+    "borrower": null
+  }
+},
+{
+  "model": "catalog.bookinstance",
+  "pk": "47929dde-0c9d-445f-b1cb-19d99fd1706e",
+  "fields": {
+    "book": 3,
+    "imprint": ",",
+    "due_back": "2019-06-15",
+    "status": "o",
+    "borrower": [
+      "testuser"
+    ]
+  }
+},
+{
+  "model": "catalog.bookinstance",
+  "pk": "58912a5c-63cf-4c52-9514-29b830641bc7",
+  "fields": {
+    "book": 1,
+    "imprint": ".",
+    "due_back": "2019-05-31",
+    "status": "o",
+    "borrower": [
+      "testuser"
+    ]
+  }
+},
+{
+  "model": "catalog.bookinstance",
+  "pk": "8b3fa8d1-6b6e-44b3-9f96-5d955fe416c4",
+  "fields": {
+    "book": 1,
+    "imprint": ".",
+    "due_back": null,
+    "status": "a",
+    "borrower": null
+  }
+},
+{
+  "model": "catalog.bookinstance",
+  "pk": "a117e318-c1f9-4dc8-b077-236c6b31d058",
+  "fields": {
+    "book": 2,
+    "imprint": ".",
+    "due_back": null,
+    "status": "a",
+    "borrower": null
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2019-05-10T03:13:20.933Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "object_id": "1",
+    "object_repr": "Murakami, Haruki",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2019-05-10T03:14:51.674Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "object_id": "1",
+    "object_repr": "Bildungsroman",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2019-05-10T03:15:05.175Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "language"
+    ],
+    "object_id": "1",
+    "object_repr": "English",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2019-05-10T03:15:13.055Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "object_id": "1",
+    "object_repr": "Norwegian Wood",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2019-05-10T03:16:44.605Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "object_id": "2",
+    "object_repr": "Alternative history",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2019-05-10T03:16:50.554Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "object_id": "3",
+    "object_repr": "Parallel worlds",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2019-05-10T03:16:55.665Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "object_id": "2",
+    "object_repr": "1Q84",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2019-05-10T03:18:18.568Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "object_id": "2",
+    "object_repr": "Lee, Harper",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2019-05-10T03:19:23.681Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "object_id": "4",
+    "object_repr": "Southern gothic",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2019-05-10T03:19:30.315Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "object_id": "3",
+    "object_repr": "To Kill A Mockingbird",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2019-05-10T03:20:43.469Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "author"
+    ],
+    "object_id": "3",
+    "object_repr": "Doctorow, E. L.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2019-05-10T03:21:18.347Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "genre"
+    ],
+    "object_id": "5",
+    "object_repr": "Historical novel",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2019-05-10T03:21:22.057Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "book"
+    ],
+    "object_id": "4",
+    "object_repr": "Ragtime",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2019-05-10T03:23:17.027Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "8b3fa8d1-6b6e-44b3-9f96-5d955fe416c4",
+    "object_repr": "8b3fa8d1-6b6e-44b3-9f96-5d955fe416c4 (Norwegian Wood)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2019-05-10T03:23:32.184Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "58912a5c-63cf-4c52-9514-29b830641bc7",
+    "object_repr": "58912a5c-63cf-4c52-9514-29b830641bc7 (Norwegian Wood)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2019-05-10T03:23:42.535Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "a117e318-c1f9-4dc8-b077-236c6b31d058",
+    "object_repr": "a117e318-c1f9-4dc8-b077-236c6b31d058 (1Q84)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2019-05-10T03:23:53.346Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "47929dde-0c9d-445f-b1cb-19d99fd1706e",
+    "object_repr": "47929dde-0c9d-445f-b1cb-19d99fd1706e (To Kill A Mockingbird)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2019-05-10T03:24:00.599Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "46e1824e-79e9-44f6-b8f3-40a22c2e3379",
+    "object_repr": "46e1824e-79e9-44f6-b8f3-40a22c2e3379 (Ragtime)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2019-05-10T04:40:29.338Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "1",
+    "object_repr": "Library Members",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2019-05-10T04:41:06.241Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "testuser",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2019-05-10T04:41:35.942Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "testuser",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2019-05-10T04:42:03.491Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "2",
+    "object_repr": "Librarians",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2019-05-10T04:42:27.872Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "librarian",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2019-05-10T04:42:37.300Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "librarian",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"groups\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2019-05-10T05:02:54.622Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "58912a5c-63cf-4c52-9514-29b830641bc7",
+    "object_repr": "58912a5c-63cf-4c52-9514-29b830641bc7 (Norwegian Wood)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"borrower\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2019-05-10T05:03:01.199Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "47929dde-0c9d-445f-b1cb-19d99fd1706e",
+    "object_repr": "47929dde-0c9d-445f-b1cb-19d99fd1706e (To Kill A Mockingbird)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"borrower\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2019-05-10T05:11:16.806Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "librarian",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"is_staff\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2019-05-10T05:21:03.920Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "librarian",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"user_permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2019-05-10T05:21:16.136Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "2",
+    "object_repr": "Librarians",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2019-05-10T05:25:16.371Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "58912a5c-63cf-4c52-9514-29b830641bc7",
+    "object_repr": "58912a5c-63cf-4c52-9514-29b830641bc7 (Norwegian Wood)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"due_back\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2019-05-10T05:26:04.178Z",
+    "user": [
+      "dbergv"
+    ],
+    "content_type": [
+      "catalog",
+      "bookinstance"
+    ],
+    "object_id": "58912a5c-63cf-4c52-9514-29b830641bc7",
+    "object_repr": "58912a5c-63cf-4c52-9514-29b830641bc7 (Norwegian Wood)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"due_back\"]}}]"
+  }
+}
+]
