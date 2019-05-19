@@ -1,7 +1,4 @@
 {
-  "addons": [
-    "heroku-postgresql"
-  ],
   "env": {
     "DATABASE_URL": {},
     "DJANGO_DEBUG": {},
