@@ -1,17 +1,11 @@
 {% extends "base_generic.html" %}
-
+{% load render_table from django_tables2 %}
 {% block content %}
     <h1>All Borrowed books</h1>
-
-    {% if bookinstance_list %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    {% if borrowedbooks %}
     <ul>
-
-      {% for bookinst in bookinstance_list %} 
-      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}"><strong>{{bookinst.book.title}}</strong></a> (Due: {{ bookinst.due_back }}) - {{ bookinst.borrower }} <small>({{ bookinst.id }})</small>
-        {% if perms.catalog.can_mark_returned %} - <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>  {% endif %}
-      </li>
-      {% endfor %}
+      {% render_table borrowedbooks %}
     </ul>
 
     {% else %}

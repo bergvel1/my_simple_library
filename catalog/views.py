@@ -30,55 +30,22 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
-
 from django.views import generic
-
-
-class BookListView(generic.ListView):
-    model = Book
-    paginate_by = 10
 
 
 class BookDetailView(generic.DetailView):
     model = Book
 
 
-class AuthorListView(generic.ListView):
-    model = Author
-    paginate_by = 10
-
-
 class AuthorDetailView(generic.DetailView):
     model = Author
 
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
-
-class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
-    """Generic class-based view listing books on loan to current user."""
-    model = BookInstance
-    template_name = 'catalog/bookinstance_list_borrowed_user.html'
-    paginate_by = 10
-
-    def get_queryset(self):
-        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
-
-
-class AllLoanedBooksListView(PermissionRequiredMixin, generic.ListView):
-    permission_required = 'catalog.can_mark_returned'
-    model = BookInstance
-    template_name = 'catalog/bookinstance_list_borrowed_all.html'
-    paginate_by = 10
-
-    def get_queryset(self):
-        return BookInstance.objects.filter(status__exact='o').order_by('due_back')
-
 
 import datetime
 
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -158,3 +125,31 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'catalog.can_mark_returned'
     model = Book
     success_url = reverse_lazy('books')
+
+from .tables import AuthorTable, BookTable, BookInstanceTable
+from django_tables2 import RequestConfig
+
+
+def authors(request):
+    table = AuthorTable(Author.objects.all())
+    RequestConfig(request, paginate={'per_page': 10}).configure(table)
+    return render(request, 'catalog/authors.html', {'authors': table, 'is_paginated': table.paginator.num_pages > 1})
+
+
+def books(request):
+    table = BookTable(Book.objects.all())
+    RequestConfig(request, paginate={'per_page': 10}).configure(table)
+    return render(request, 'catalog/books.html', {'books': table, 'is_paginated': table.paginator.num_pages > 1})
+
+@login_required
+def mybooks(request):
+    table = BookInstanceTable(BookInstance.objects.filter(borrower=request.user).filter(status__exact='o').order_by('due_back'))
+    RequestConfig(request, paginate={'per_page': 10}).configure(table)
+    return render(request, 'catalog/bookinstance_list_borrowed_user.html', {'mybooks': table, 'is_paginated': table.paginator.num_pages > 1})
+
+
+@permission_required('catalog.can_mark_returned')
+def all_borrowed_books(request):
+    table = BookInstanceTable(BookInstance.objects.filter(status__exact='o').order_by('due_back'))
+    RequestConfig(request, paginate={'per_page': 10}).configure(table)
+    return render(request, 'catalog/bookinstance_list_borrowed_all.html', {'borrowedbooks': table, 'is_paginated': table.paginator.num_pages > 1})

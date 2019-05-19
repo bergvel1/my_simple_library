@@ -27,14 +27,14 @@ class AuthorListViewTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse('authors'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'catalog/author_list.html')
+        self.assertTemplateUsed(response, 'catalog/authors.html')
 
     def test_pagination_is_ten(self):
         response = self.client.get(reverse('authors'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
         self.assertTrue(response.context['is_paginated'] == True)
-        self.assertTrue(len(response.context['author_list']) == 10)
+        self.assertTrue(len(response.context['authors'].page.object_list.data._result_cache) == 10)
 
     def test_lists_all_authors(self):
         # Get second page and confirm it has (exactly) remaining 3 items
@@ -42,7 +42,7 @@ class AuthorListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
         self.assertTrue(response.context['is_paginated'] == True)
-        self.assertTrue(len(response.context['author_list']) == 3)
+        self.assertTrue(len(response.context['authors'].page.object_list.data._result_cache) == 3)
 
 
 import datetime
@@ -119,8 +119,8 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Check that initially we don't have any books in list (none on loan)
-        self.assertTrue('bookinstance_list' in response.context)
-        self.assertEqual(len(response.context['bookinstance_list']), 0)
+        self.assertTrue('mybooks' in response.context)
+        self.assertEqual(len(response.context['mybooks'].page.object_list.data._result_cache), 0)
 
         # Now change all books to be on loan
         books = BookInstance.objects.all()[:10]
@@ -136,10 +136,10 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         # Check that we got a response "success"
         self.assertEqual(response.status_code, 200)
 
-        self.assertTrue('bookinstance_list' in response.context)
+        self.assertTrue('mybooks' in response.context)
 
         # Confirm all books belong to testuser1 and are on loan
-        for bookitem in response.context['bookinstance_list']:
+        for bookitem in response.context['mybooks'].page.object_list.data._result_cache:
             self.assertEqual(response.context['user'], bookitem.borrower)
             self.assertEqual('o', bookitem.status)
 
@@ -158,10 +158,10 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Confirm that of the items, only 10 are displayed due to pagination.
-        self.assertEqual(len(response.context['bookinstance_list']), 10)
+        self.assertEqual(len(response.context['mybooks'].page.object_list.data._result_cache), 10)
 
         last_date = 0
-        for book in response.context['bookinstance_list']:
+        for book in response.context['mybooks'].page.object_list.data._result_cache:
             if last_date == 0:
                 last_date = book.due_back
             else:
