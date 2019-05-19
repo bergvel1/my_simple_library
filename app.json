@@ -4,7 +4,10 @@
       "DJANGO_SECRET_KEY": {
         "description": "A secret key for verifying the integrity of signed cookies.",
         "generator": "secret"
-        }
+        },
+      "DATABASE_URL": {},
+      "DJANGO_DEBUG": {},
+      "PAPERTRAIL_API_TOKEN": {}
     },
     "test": {
       "addons": [
