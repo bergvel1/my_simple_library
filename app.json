@@ -5,7 +5,7 @@
           "heroku-postgresql:hobby-dev"
       ],
       "scripts": {
-        "test-setup": "python manage.py collectstatic --noinput",
+        "test-setup": "python manage.py collectstatic --noinput; python manage.py makemigrations; python manage.py migrate",
         "test": "python manage.py test"
       }
     }
