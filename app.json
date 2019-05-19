@@ -11,6 +11,7 @@
   "environments": {
     "test": {
       "scripts": {
+        "test-setup": "python manage.py collectstatic",
         "test": "python3 manage.py test"
       },
       "env": {
