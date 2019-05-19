@@ -10,7 +10,7 @@
       "PAPERTRAIL_API_TOKEN": {}
     },
     "scripts": {
-      "postdeploy": "python manage.py makemigrations; python manage.py migrate"
+      "postdeploy": "python manage.py makemigrations; python manage.py migrate; python manage.py collectstatic --noinput"
     },
     "test": {
       "addons": [
