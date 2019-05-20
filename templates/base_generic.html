@@ -5,12 +5,15 @@
 <head>
   {% block title %}<title>Local Library</title>{% endblock %}
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
   <meta name="description" content="A simple webapp to help me learn Django">
   <meta name="author" content="David Bergvelt">
 
   <!-- Add additional CSS in static file -->
   {% block head-css %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% comment %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
     <link href="{% static 'bootstrap/css/bootstrap.css' %}"
           rel="stylesheet" media="screen">
@@ -25,17 +28,18 @@
           rel="stylesheet" media="screen">
     <link href="{% static 'bootstrap/css/bootstrap-reboot.min.css' %}"
           rel="stylesheet" media="screen">
+{% endcomment %}
 
     <style type="text/css">
       .asteriskField {
         display: none;
       }
 
-      form .alert ul li{
+      form .alert ul li {
         list-style: none;
       }
 
-      form .alert ul{
+      form .alert ul {
         padding: 0;
         margin: 0;
       }

@@ -11,7 +11,6 @@ class AuthorTable(tables.Table):
     date_of_death = tables.Column()
 
     class Meta:
-        model = Author
         empty_text = 'No authors found'
         template_name = 'django_tables2/bootstrap4.html'
 
