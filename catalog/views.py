@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.views.generic.base import ContextMixin
+from django.views.generic.list import MultipleObjectMixin
 from django_filters.views import FilterView
 
 from catalog.models import Book, Author, BookInstance, Genre
@@ -33,6 +36,7 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
+
 from django.views import generic
 
 
@@ -44,7 +48,7 @@ class AuthorDetailView(generic.DetailView):
     model = Author
 
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 import datetime
 
@@ -129,30 +133,35 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
 
+
 from .tables import AuthorTable, BookTable, BookInstanceTable
-from django_tables2 import RequestConfig, SingleTableMixin
+from django_tables2 import RequestConfig, SingleTableMixin, SingleTableView, MultiTableMixin
 
 
 def authors(request):
     table = AuthorTable(Author.objects.all())
     f = AuthorFilter(request.GET, queryset=Author.objects.all())
     RequestConfig(request, paginate={'per_page': 10}).configure(table)
-    return render(request, 'catalog/authors.html', {'authors': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
+    return render(request, 'catalog/authors.html',
+                  {'authors': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
 
 
 def books(request):
     table = BookTable(Book.objects.all())
     f = BookFilter(request.GET, queryset=Book.objects.all())
     RequestConfig(request, paginate={'per_page': 10}).configure(table)
-    return render(request, 'catalog/books.html', {'books': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
+    return render(request, 'catalog/books.html',
+                  {'books': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
+
 
 @login_required
 def mybooks(request):
-    my_borrowed_list = BookInstance.objects.filter(borrower=request.user).filter(status__exact='o').order_by('due_back')
+    my_borrowed_list = BookInstance.objects.filter(borrower=request.user).filter(status__exact='a').order_by('due_back')
     table = BookInstanceTable(my_borrowed_list)
     f = BookInstanceFilter(request.GET, queryset=my_borrowed_list)
     RequestConfig(request, paginate={'per_page': 10}).configure(table)
-    return render(request, 'catalog/bookinstance_list_borrowed_user.html', {'mybooks': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
+    return render(request, 'catalog/bookinstance_list_borrowed_user.html',
+                  {'mybooks': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
 
 
 @permission_required('catalog.can_mark_returned')
@@ -161,28 +170,73 @@ def all_borrowed_books(request):
     table = BookInstanceTable(all_borrowed_list)
     f = BookInstanceFilter(request.GET, queryset=all_borrowed_list)
     RequestConfig(request, paginate={'per_page': 10}).configure(table)
-    return render(request, 'catalog/bookinstance_list_borrowed_all.html', {'borrowedbooks': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
+    return render(request, 'catalog/bookinstance_list_borrowed_all.html',
+                  {'borrowedbooks': table, 'is_paginated': table.paginator.num_pages > 1, 'filter': f})
 
 
-class FilteredAuthorListView(SingleTableMixin, FilterView):
-    table_class = AuthorTable
+class FilteredAuthorListView(SingleTableMixin, FilterView, MultipleObjectMixin):
     model = Author
     template_name = "catalog/authors.html"
-
+    table_class = AuthorTable
     filterset_class = AuthorFilter
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        table = AuthorTable(self.model.objects.all())
+        table.paginate(per_page=self.paginate_by)
+        ctx['authors'] = table
+        return ctx
 
 
-class FilteredBookListView(SingleTableMixin, FilterView):
+
+class FilteredBookListView(SingleTableMixin, FilterView, MultipleObjectMixin):
     table_class = BookTable
     model = Book
     template_name = "catalog/books.html"
-
     filterset_class = BookFilter
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        table = BookTable(self.model.objects.all())
+        table.paginate(per_page=self.paginate_by)
+        ctx['mybooks'] = table
+        return ctx
 
 
-class FilteredBookInstanceListView(SingleTableMixin, FilterView):
+class FilteredAllBooksInstanceListView(PermissionRequiredMixin, SingleTableMixin, FilterView, MultipleObjectMixin):
+    permission_required = 'catalog.can_mark_returned'
     table_class = BookInstanceTable
     model = BookInstance
-    #template_name = "catalog/books.html"
-
+    template_name = "catalog/bookinstance_list_borrowed_all.html"
     filterset_class = BookInstanceFilter
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        table = BookInstanceTable(self.model.objects.all().filter(status__exact='o').order_by('due_back'))
+        table.paginate(per_page=self.paginate_by)
+        ctx['bookinstance_list'] = table
+        return ctx
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(status__exact='o').order_by('due_back')
+
+
+class FilteredMyBooksInstanceListView(LoginRequiredMixin, SingleTableMixin, FilterView, MultipleObjectMixin):
+    table_class = BookInstanceTable
+    model = BookInstance
+    template_name = "catalog/bookinstance_list_borrowed_user.html"
+    filterset_class = BookInstanceFilter
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        table = BookInstanceTable(self.model.objects.all().filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back'))
+        table.paginate(per_page=self.paginate_by)
+        ctx['bookinstance_list'] = table
+        return ctx
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
