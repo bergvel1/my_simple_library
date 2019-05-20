@@ -3,26 +3,12 @@
 {% load bootstrap3 %}
 {% block content %}
   <h1>Book List</h1>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   {% if filter %}
     <form action="" method="get" class="form form-inline">
       {% bootstrap_form filter.form layout='inline' %}
-      {% bootstrap_button 'filter' button_type='submit' %}
+      {% bootstrap_button 'filter' %}
     </form>
-    {% if books %}
-      <ul>
-        {% render_table filter.qs 'django_tables2/bootstrap.html' %}
-      </ul>
-    {% else %}
-      <p>No books found.</p>
-    {% endif %}
-  {% else %}
-    {% if books %}
-      <ul>
-        {% render_table books %}
-      </ul>
-    {% else %}
-      <p>No books found.</p>
-    {% endif %}
   {% endif %}
+  {% render_table table 'django_tables2/bootstrap.html' %}
+
 {% endblock %}
