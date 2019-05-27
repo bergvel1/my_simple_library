@@ -1,0 +1,43 @@
+.row {
+    margin-top: 40px;
+    padding: 0 10px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.panel-heading {
+    display: inline-table;
+    width: 100%;
+}
+
+.panel-heading div {
+    display: table-cell;
+    font-size: 1.25rem;
+}
+
+.panel-heading div span {
+    margin-left: 5px;
+}
+
+.panel-body {
+    display: block;
+    border-bottom: 2px solid #dddddd;
+    background-color: #dddddd;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.panel-title {
+    display: table-cell;
+    font-size: 3rem;
+    font-weight: lighter;
+}
+
+.pull-right {
+    vertical-align: middle;
+    float: unset;
+}

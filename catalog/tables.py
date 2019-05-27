@@ -1,7 +1,4 @@
 import django_tables2 as tables
-from django_tables2 import views
-
-from catalog.models import Author
 
 
 class AuthorTable(tables.Table):
@@ -11,8 +8,11 @@ class AuthorTable(tables.Table):
     date_of_death = tables.Column()
 
     class Meta:
+        title = 'Authors'
+        placeholder = 'Search authors'
         empty_text = 'No authors found'
-        template_name = 'django_tables2/bootstrap4.html'
+        template_name = 'mybootstrap4.html'
+        attrs = {'id': 'author_table'}
 
     def render_author(self, record):
         return '{}, {}'.format(record.last_name, record.first_name)
@@ -26,8 +26,11 @@ class BookTable(tables.Table):
     isbn = tables.Column()
 
     class Meta:
+        title = 'Books'
+        placeholder = 'Search books'
         empty_text = 'No books found'
-        template_name = 'django_tables2/bootstrap4.html'
+        template_name = 'mybootstrap4.html'
+        attrs = {'id': 'book_table'}
 
 
 class BookInstanceTable(tables.Table):
@@ -39,5 +42,7 @@ class BookInstanceTable(tables.Table):
     borrower = tables.Column()
 
     class Meta:
+        placeholder = 'Search books'
         empty_text = 'No books found'
-        template_name = 'django_tables2/bootstrap4.html'
+        template_name = 'mybootstrap4.html'
+        attrs = {'id': 'bookinstance_table'}

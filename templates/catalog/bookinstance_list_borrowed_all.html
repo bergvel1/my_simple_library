@@ -2,14 +2,5 @@
 {% load render_table from  django_tables2 %}
 {% load bootstrap3 %}
 {% block content %}
-  {% if bookinstance_list %}
-  <h1>All borrowed books</h1>
-  {% if filter %}
-    <form action="" method="get" class="form form-inline">
-      {% bootstrap_form filter.form layout='inline' %}
-      {% bootstrap_button 'filter' %}
-    </form>
-  {% endif %}
-    {% render_table table 'django_tables2/bootstrap4.html' %}
-  {% endif %}
+  {% render_table table %}
 {% endblock %}

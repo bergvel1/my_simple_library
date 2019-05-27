@@ -146,6 +146,7 @@ class FilteredAuthorListView(SingleTableMixin, FilterView, MultipleObjectMixin):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         table = AuthorTable(self.model.objects.all())
+        table.Meta.filter = self.filterset
         table.paginate(per_page=self.paginate_by)
         ctx['authors'] = table
         return ctx
@@ -161,6 +162,7 @@ class FilteredBookListView(SingleTableMixin, FilterView, MultipleObjectMixin):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         table = BookTable(self.model.objects.all())
+        table.Meta.filter = self.filterset
         table.paginate(per_page=self.paginate_by)
         ctx['mybooks'] = table
         return ctx
@@ -177,6 +179,8 @@ class FilteredAllBooksInstanceListView(PermissionRequiredMixin, SingleTableMixin
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         table = BookInstanceTable(self.model.objects.all().filter(status__exact='o').order_by('due_back'))
+        table.Meta.title = "All borrowed books"
+        table.Meta.filter = self.filterset
         table.paginate(per_page=self.paginate_by)
         ctx['bookinstance_list'] = table
         return ctx
@@ -196,6 +200,8 @@ class FilteredMyBooksInstanceListView(LoginRequiredMixin, SingleTableMixin, Filt
         ctx = super().get_context_data(**kwargs)
         table = BookInstanceTable(
             self.model.objects.all().filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back'))
+        table.Meta.title = "My borrowed books"
+        table.Meta.filter = self.filterset
         table.paginate(per_page=self.paginate_by)
         ctx['bookinstance_list'] = table
         return ctx
