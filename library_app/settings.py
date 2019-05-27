@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github'
 ]
 
-SITE_ID = 2
+SITE_ID = os.environ.get('SITE_ID', 2)
 ACCOUNT_SESSION_REMEMBER = False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
