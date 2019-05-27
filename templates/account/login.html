@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block content %}
+  <div class="m-auto w-50">
+    <div class="card">
+      <h2 class="card-header">Sign in</h2>
+      <div class="card-body">
+
+        {% get_providers as socialaccount_providers %}
+
+        <a href="{% provider_login_url 'github' %}" class="mb-4 btn btn-lg btn-primary btn-block" role="button">Sign in
+          via GitHub</a>
+
+        <hr>
+        <div class="mt-3 text-center">
+          <p class="text-muted font-weight-light">or</p>
+        </div>
+        <hr>
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="mt-4 btn btn-lg btn-outline-primary btn-block">Sign in regularly</button>
+        </form>
+
+        <div class="mt-3 text-center">
+          <p class="text-muted font-weight-light"><a class="text-reset" href="{% url 'account_reset_password' %}">Forgot
+            your
+            password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
