@@ -99,7 +99,7 @@
   <div class="container my-5">
     {% block content %}{% endblock %}
     {% block pagination %}
-      {% if is_paginated %}
+      {% comment %}      {% if is_paginated %}
         <div class="pagination">
               <span class="page-links">
                   {% if page_obj.has_previous %}
@@ -113,7 +113,7 @@
                 {% endif %}
               </span>
         </div>
-      {% endif %}
+      {% endif %}{% endcomment %}
     {% endblock %}
   </div>
 
