@@ -1,10 +1,11 @@
 """
 Test settings for deployment on Heroku CI
 """
+import environ
+
 # Inherit from your regular test settings, here the settings files are arranged like those generated from the
 # django-cookiecutter package
 from library_app.settings import *
-import environ
 
 env = environ.Env()
 

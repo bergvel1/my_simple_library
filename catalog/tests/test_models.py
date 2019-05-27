@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from catalog.models import Author
 
+
 class AuthorModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -21,7 +22,7 @@ class AuthorModelTest(TestCase):
     def test_first_name_max_length(self):
         author = Author.objects.get(id=1)
         max_length = author._meta.get_field('first_name').max_length
-        self.assertEquals(max_length, 100)
+        self.assertEquals(max_length, 255)
 
     def test_object_name_is_last_name_comma_first_name(self):
         author = Author.objects.get(id=1)

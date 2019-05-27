@@ -6,11 +6,7 @@ Then, make TEST_RUNNER setting a Python path to the HerokuTestSuiteRunner class.
 """
 import os
 
-import django
 from django.test.runner import DiscoverRunner
-from django.conf import settings
-from django.core.management import call_command
-from django.db.utils import ConnectionHandler
 
 
 class HerokuDiscoverRunner(DiscoverRunner):
