@@ -18,7 +18,7 @@ if not CI:
 
 # Register the heroku CI runner, which wipes tables instead of dropping the whole database
 # (Heroku users don't have database drop permission)
-TEST_RUNNER = 'test_suite_runner.HerokuDiscoverRunner'
+TEST_RUNNER = 'util.test_suite_runner.HerokuDiscoverRunner'
 
 # Register the test database as being the same as the default (already set in the settings we inherited from). We've
 # used use a heroku addon to provision a new, clean, database into the CI environment, so this should be OK here but
