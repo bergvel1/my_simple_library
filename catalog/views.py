@@ -1,19 +1,9 @@
-from django.contrib.auth import (REDIRECT_FIELD_NAME, login as auth_login)
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import SuccessURLAllowedHostsMixin
-from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import render, resolve_url
-from django.utils.decorators import method_decorator
-from django.utils.http import is_safe_url
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.debug import sensitive_post_parameters
+from django.shortcuts import render
 from django.views.generic.list import MultipleObjectMixin
 from django_filters.views import FilterView
 
 from catalog.filters import AuthorFilter, BookFilter, BookInstanceFilter
 from catalog.models import Book, Author, BookInstance
-from library_app import settings
 
 
 def index(request):
@@ -101,7 +91,7 @@ def renew_book_librarian(request, pk):
     return render(request, 'catalog/book_renew_librarian.html', context)
 
 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 
@@ -174,7 +164,7 @@ class FilteredBookListView(SingleTableMixin, FilterView, MultipleObjectMixin):
         table = BookTable(self.model.objects.all())
         table.Meta.filter = self.filterset
         table.paginate(per_page=self.paginate_by)
-        ctx['mybooks'] = table
+        ctx['books'] = table
         return ctx
 
 
@@ -220,68 +210,3 @@ class FilteredMyBooksInstanceListView(LoginRequiredMixin, SingleTableMixin, Filt
         return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
 
 
-class RegisterView(SuccessURLAllowedHostsMixin, FormView):
-    """
-    Display the login form and handle the login action.
-    """
-    form_class = AuthenticationForm
-    authentication_form = None
-    redirect_field_name = REDIRECT_FIELD_NAME
-    template_name = 'registration/register.html'
-    redirect_authenticated_user = False
-    extra_context = None
-
-    @method_decorator(sensitive_post_parameters())
-    @method_decorator(csrf_protect)
-    @method_decorator(never_cache)
-    def dispatch(self, request, *args, **kwargs):
-        if self.redirect_authenticated_user and self.request.user.is_authenticated:
-            redirect_to = self.get_success_url()
-            if redirect_to == self.request.path:
-                raise ValueError(
-                    "Redirection loop for authenticated user detected. Check that "
-                    "your LOGIN_REDIRECT_URL doesn't point to a login page."
-                )
-            return HttpResponseRedirect(redirect_to)
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_success_url(self):
-        url = self.get_redirect_url()
-        return url or resolve_url(settings.LOGIN_REDIRECT_URL)
-
-    def get_redirect_url(self):
-        """Return the user-originating redirect URL if it's safe."""
-        redirect_to = self.request.POST.get(
-            self.redirect_field_name,
-            self.request.GET.get(self.redirect_field_name, '')
-        )
-        url_is_safe = is_safe_url(
-            url=redirect_to,
-            allowed_hosts=self.get_success_url_allowed_hosts(),
-            require_https=self.request.is_secure(),
-        )
-        return redirect_to if url_is_safe else ''
-
-    def get_form_class(self):
-        return self.authentication_form or self.form_class
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
-
-    def form_valid(self, form):
-        """Security check complete. Log the user in."""
-        auth_login(self.request, form.get_user())
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        current_site = get_current_site(self.request)
-        context.update({
-            self.redirect_field_name: self.get_redirect_url(),
-            'site': current_site,
-            'site_name': current_site.name,
-            **(self.extra_context or {})
-        })
-        return context
