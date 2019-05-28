@@ -1,25 +1,59 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.title }}</h1>
+  <div class="jumbotron">
+    <h1 class="display-4">{{ book.title }}</h1>
+    <hr class="my-2 invisible">
 
-  <p><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
-  <p><strong>Summary:</strong> {{ book.summary }}</p>
-  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-  <p><strong>Language:</strong> {{ book.language }}</p>
-  <p><strong>Genre:</strong> {% for genre in book.genre.all %}
-    {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p class="lead"><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a>
+    </p>
+    <p class="lead"><strong>Summary:</strong> {{ book.summary }}</p>
+    <p class="lead"><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p class="lead"><strong>Language:</strong> {{ book.language }}</p>
+    <p class="lead"><strong>Genre:</strong> {% for genre in book.genre.all %}
+      {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
-  <div style="margin-left:20px;margin-top:20px">
-    <h4>Copies</h4>
+    <hr class="my-4">
 
-    {% for copy in book.bookinstance_set.all %}
-      <hr>
-      <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
-      {% if copy.status != 'a' %}
-        <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
-      {% endif %}
-      <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
-    {% endfor %}
+    <div class="card bg-secondary">
+      <h3 class="card-header text-white display-5"> Copies </h3>
+
+      <div class="card-body">
+        <div style="margin-left:0px;margin-top:0px" class="accordion" id="bookAccordion">
+
+
+          {% for copy in book.bookinstance_set.all %}
+
+            <div class="card">
+              <div class="card-header">
+
+                <button class="btn btn-link btn-block" style="display: inline-table" type="button"
+                        data-toggle="collapse" data-target="#collapse{{ copy.id }}"
+                        aria-expanded="true" aria-controls="collapse{{ copy.id }}">
+                  <h4 style="display: table-cell; float: left; font-weight: normal; margin-bottom: 0"
+                      class="card-title {% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}"> {{ copy.get_status_display }}</h4>
+                  <p style="display: table-cell; float: right" class="text-muted card-text">
+                    <strong>Id:</strong> {{ copy.id }}</p>
+                </button>
+              </div>
+
+              <div id="collapse{{ copy.id }}" class="collapse" aria-labelledby="heading{{ copy.id }}"
+                   data-parent="#bookAccordion">
+                <div class="card-body">
+                  {% if copy.status != 'a' %}
+                    <p style="margin: 0 0 0" class="text-center"><strong>Due to be
+                      returned:</strong> {{ copy.due_back }}</p>
+                  {% elif copy.status == 'a' %}
+                    <button type="" class=" btn btn-lg btn-outline-success btn-block">Reserve</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 {% endblock %}
