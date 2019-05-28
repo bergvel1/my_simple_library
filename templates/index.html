@@ -3,15 +3,18 @@
 {% block title %}<title>Library Home</title>{% endblock %}
 
 {% block content %}
-  <h1>My Simple Library</h1>
-  <p class="lead">Welcome to my simple library! The goal of this website is to learn how to make a Django web app.</p>
-  <h2>Dynamic content</h2>
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-  </ul>
-  <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+  <div class="jumbotron">
+    <h1 class="display-4">My Simple Library</h1>
+    <p class="lead">Welcome to my simple library! The goal of this website is to learn how to make a Django web app.</p>
+    <hr class="my-4">
+    <h2>Dynamic content</h2>
+    <p>The library has the following record counts:</p>
+    <ul>
+      <li><strong>Books:</strong> {{ num_books }}</li>
+      <li><strong>Copies:</strong> {{ num_instances }}</li>
+      <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+      <li><strong>Authors:</strong> {{ num_authors }}</li>
+    </ul>
+    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+  </div>
 {% endblock %}

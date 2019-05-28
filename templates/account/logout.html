@@ -2,15 +2,18 @@
 {% load i18n %}
 
 {% block content %}
-  <h1>{% trans "Sign Out" %}</h1>
+  <div class="jumbotron">
+    <h1 class="display-4">{% trans "Sign Out" %}</h1>
+    <hr class="my-4 invisible">
 
-  <p>{% trans 'Are you sure you want to sign out?' %}</p>
+    <p class="lead">{% trans 'Are you sure you want to sign out?' %}</p>
 
   <form method="post" action="{% url 'account_logout' %}">
     {% csrf_token %}
     {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
     {% endif %}
-    <button type="submit" class="btn btn-secondary">{% trans 'Sign Out' %}</button>
+    <button type="submit" class="btn btn-secondary btn-lg">{% trans 'Sign Out' %}</button>
   </form>
+  </div>
 {% endblock %}
