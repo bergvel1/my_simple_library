@@ -57,6 +57,7 @@ body {
     display: flex;
     align-items: inherit;
     padding: 0px;
+    border-radius: 0px;
 }
 
 .navbar-brand {

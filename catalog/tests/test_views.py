@@ -36,13 +36,120 @@ class AuthorListViewTest(TestCase):
         self.assertTrue(response.context['is_paginated'] == True)
         self.assertTrue(len(response.context['authors'].page.object_list.data) == 10)
 
-    def     test_lists_all_authors(self):
+    def test_lists_all_authors(self):
         # Get second page and confirm it has (exactly) remaining 3 items
         response = self.client.get(reverse('authors') + '?page=2')
         self.assertEqual(response.status_code, 200)
         self.assertTrue('is_paginated' in response.context)
         self.assertTrue(response.context['is_paginated'] == True)
         self.assertTrue(len(response.context_data['object_list']) == 3)
+
+    def test_filters_none(self):
+        # A general enough filter query will have no effect
+        response = self.client.get(reverse('authors') + '?first_name__icontains=Christian&last_name__icontains=')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertEqual(len(response.context['authors'].Meta.filter.qs), 13)
+
+    def test_filters_most(self):
+        # A stricter filter will reduce the number of entries
+        response = self.client.get(reverse('authors') + '?first_name__icontains=Christian+1&last_name__icontains=')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertEqual(len(response.context['authors'].Meta.filter.qs), 4)
+
+    def test_filters_most_surname(self):
+        # Same as before, but checking surnames
+        response = self.client.get(reverse('authors') + '?first_name__icontains=&last_name__icontains=Surname+1')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertEqual(len(response.context['authors'].Meta.filter.qs), 4)
+
+
+class BookListViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create 3 authors for pagination tests
+        number_of_authors = 3
+
+        # for author_id in range(number_of_authors):
+        #     Author.objects.create(
+        #         first_name=f'Christian {author_id}',
+        #         last_name=f'Surname {author_id}',
+        #     )
+
+        # Create 12 books for pagination tests
+        number_of_books = 12
+
+        for book_id in range(number_of_books):
+            Book.objects.create(
+                title=f'Title {book_id}',
+                isbn=f'{book_id}',
+                author=Author.objects.create(first_name=f'Christian {book_id // 3}',
+                                             last_name=f'Surname {book_id // 3}')
+            )
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/catalog/books/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('books'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('books'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'catalog/books.html')
+
+    def test_pagination_is_ten(self):
+        response = self.client.get(reverse('books'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertTrue(len(response.context['books'].page.object_list.data) == 10)
+
+    def test_lists_all_books(self):
+        # Get second page and confirm it has (exactly) remaining 2 items
+        response = self.client.get(reverse('books') + '?page=2')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertTrue(len(response.context_data['object_list']) == 2)
+
+    def test_filters_none(self):
+        # A general enough filter query will have no effect
+        response = self.client.get(reverse(
+            'books') + '?title__icontains=Title&author__first_name__icontains=&author__last_name__icontains=&isbn__iexact=')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertTrue(response.context['is_paginated'] == True)
+        self.assertEqual(len(response.context['books'].Meta.filter.qs), 12)
+
+    def test_filters_most(self):
+        # A stricter filter will reduce the number of entries
+        response = self.client.get(reverse(
+            'books') + '?title__icontains=Title+1&author__first_name__icontains=&author__last_name__icontains=&isbn__iexact=')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertEqual(len(response.context['books'].Meta.filter.qs), 3)
+
+    def test_filters_most_isbn(self):
+        # Same as before, but checking ISBNs
+        response = self.client.get(reverse(
+            'books') + '?title__icontains=&author__first_name__icontains=&author__last_name__icontains=&isbn__iexact=1')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertEqual(len(response.context['books'].Meta.filter.qs), 1)
+
+    def test_filters_most_author(self):
+        # Same as before, but checking authors
+        response = self.client.get(reverse(
+            'books') + '?title__icontains=&author__first_name__icontains=Christian+1&author__last_name__icontains=&isbn__iexact=')
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('is_paginated' in response.context)
+        self.assertEqual(len(response.context['books'].Meta.filter.qs), 3)
 
 
 import datetime

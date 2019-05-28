@@ -1,6 +1,6 @@
-{% load static %}
 {% load socialaccount %}
 {% load account %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
-    <script src="{% static "js/filter.js" %}"></script>
+    <script src="{% static 'js/filter.js' %}"></script>
 
     <link rel="stylesheet" href="{% static 'css/filter.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -54,14 +54,14 @@
       }
 
       .form-group {
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
 
       .pagination {
         display: flex;
         padding-left: 0;
         margin: 20px 0;
-        border-radius: 4px;
+        border-radius: 0px;
       }
     </style>
   {% endblock %}
