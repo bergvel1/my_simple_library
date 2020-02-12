@@ -1,6 +1,6 @@
 bootstrap4==0.1.0
 dj-database-url==0.5.0
-Django==2.2.1
+Django==2.2.10
 django-allauth==0.39.1
 django-bootstrap3
 django-crispy-forms==1.7.2
